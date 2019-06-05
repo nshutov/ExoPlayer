@@ -39,6 +39,8 @@ import com.google.android.exoplayer2.util.Log;
 import com.google.android.exoplayer2.util.Util;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
+import java.util.Random;
 
 /**
  * Placeholder application to facilitate overriding Application methods for debugging and testing.
@@ -57,6 +59,10 @@ public class DemoApplication extends Application {
   private Cache downloadCache;
   private DownloadManager downloadManager;
   private DownloadTracker downloadTracker;
+
+  public static int playedVideosCount = 0;
+  public static Date startDate = new Date();
+  public static Random random = new Random();
 
   @Override
   public void onCreate() {

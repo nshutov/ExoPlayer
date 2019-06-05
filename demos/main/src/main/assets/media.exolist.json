@@ -1,5 +1,34 @@
 [
   {
+    "name": "Tests",
+    "samples": [
+      {
+        "name": "WV: Clear SD & HD (MP4,H264)",
+        "uri": "https://storage.googleapis.com/wvmedia/clear/h264/tears/tears.mpd"
+      },
+      {
+        "name": "WV: Clear SD (MP4,H264)",
+        "uri": "https://storage.googleapis.com/wvmedia/clear/h264/tears/tears_sd.mpd"
+      },
+      {
+        "name": "WV: Clear HD (MP4,H264)",
+        "uri": "https://storage.googleapis.com/wvmedia/clear/h264/tears/tears_hd.mpd"
+      },
+      {
+        "name": "WV: Clear SD & HD (MP4,H265)",
+        "uri": "https://storage.googleapis.com/wvmedia/clear/hevc/tears/tears.mpd"
+      },
+      {
+        "name": "WV: Clear SD (MP4,H265)",
+        "uri": "https://storage.googleapis.com/wvmedia/clear/hevc/tears/tears_sd.mpd"
+      },
+      {
+        "name": "WV: Clear HD (MP4,H265)",
+        "uri": "https://storage.googleapis.com/wvmedia/clear/hevc/tears/tears_hd.mpd"
+      }
+    ]
+  },
+  {
     "name": "YouTube DASH",
     "samples": [
       {

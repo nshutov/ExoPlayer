@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -220,6 +221,8 @@ public class PlayerActivity extends AppCompatActivity
   @Override
   public void onResume() {
     super.onResume();
+    ((TextView)findViewById(R.id.videosCounterTextView)).setText("success played: " + DemoApplication.playedVideosCount);
+    ((TextView)findViewById(R.id.startTimeTextView)).setText("app run time: " + DemoApplication.startDate.toString());
     if (Util.SDK_INT <= 23 || player == null) {
       initializePlayer();
       if (playerView != null) {
@@ -629,7 +632,8 @@ public class PlayerActivity extends AppCompatActivity
     @Override
     public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
       if (playbackState == Player.STATE_ENDED) {
-        showControls();
+        DemoApplication.playedVideosCount += 1;
+        finish();
       }
       updateButtonVisibility();
     }
@@ -643,6 +647,8 @@ public class PlayerActivity extends AppCompatActivity
         updateButtonVisibility();
         showControls();
       }
+
+      finish();
     }
 
     @Override

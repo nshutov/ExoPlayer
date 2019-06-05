@@ -21,6 +21,7 @@ import android.content.res.AssetManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.JsonReader;
@@ -53,6 +54,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /** An activity for selecting from a list of media samples. */
 public class SampleChooserActivity extends AppCompatActivity
@@ -142,6 +144,34 @@ public class SampleChooserActivity extends AppCompatActivity
   public void onStop() {
     downloadTracker.removeListener(this);
     super.onStop();
+  }
+
+  private Handler mHandler = new Handler();
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    mHandler.postDelayed(new Runnable() {
+      @Override
+      public void run() {
+        SampleGroup group = sampleAdapter.sampleGroups.get(0);
+        int ind = DemoApplication.random.nextInt(group.samples.size());
+        Sample sample = group.samples.get(ind);
+        startActivity(
+            sample.buildIntent(
+                SampleChooserActivity.this,
+                isNonNullAndChecked(preferExtensionDecodersMenuItem),
+                isNonNullAndChecked(randomAbrMenuItem)
+                    ? PlayerActivity.ABR_ALGORITHM_RANDOM
+                    : PlayerActivity.ABR_ALGORITHM_DEFAULT));
+      }
+    }, 2000);
+  }
+
+  @Override
+  public void onPause() {
+    super.onPause();
+    mHandler.removeCallbacksAndMessages(null);
   }
 
   @Override
