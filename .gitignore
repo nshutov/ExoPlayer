@@ -75,3 +75,5 @@ extensions/cronet/libs/*
 # Cast receiver
 cast_receiver_app/external-js
 cast_receiver_app/bazel-cast_receiver_app
+demos/main/sumavision_signing.bat
+demos/main/sumavision.keystore

@@ -80,3 +80,15 @@ dependencies {
 }
 
 apply plugin: 'com.google.android.gms.strict-version-matcher-plugin'
+
+task sumasignDebug(type: Exec) {
+    commandLine = [projectDir.toString() + '\\sumavision_signing.bat', projectDir.toString() + "\\buildout\\outputs\\apk\\noExtensions\\debug\\demo-noExtensions-debug.apk"]
+}
+
+android.applicationVariants.all { variant ->
+    if (variant.name == 'noExtensionsDebug') {
+        def taskSuffix = variant.name.capitalize()
+        def assembleTaskName = "assemble${taskSuffix}"
+        tasks[assembleTaskName].finalizedBy = [sumasignDebug]
+    }
+}
