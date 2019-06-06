@@ -218,6 +218,8 @@ public class PlayerActivity extends AppCompatActivity
     }
   }
 
+  private Handler mDieHandler = new Handler();
+
   @Override
   public void onResume() {
     super.onResume();
@@ -229,6 +231,12 @@ public class PlayerActivity extends AppCompatActivity
         playerView.onResume();
       }
     }
+    mDieHandler.postDelayed(new Runnable() {
+      @Override
+      public void run() {
+        finish();
+      }
+    }, 2 * 60 * 1000);
   }
 
   @Override
@@ -240,6 +248,7 @@ public class PlayerActivity extends AppCompatActivity
       }
       releasePlayer();
     }
+    mDieHandler.removeCallbacksAndMessages(null);
   }
 
   @Override
