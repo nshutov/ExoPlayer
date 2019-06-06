@@ -234,6 +234,7 @@ public class PlayerActivity extends AppCompatActivity
     mDieHandler.postDelayed(new Runnable() {
       @Override
       public void run() {
+        DemoApplication.playedVideosCount += 1;
         finish();
       }
     }, 2 * 60 * 1000);
